@@ -6,12 +6,14 @@ if ( ! defined( 'WPINC' ) )  die;
  * @link https://developer.wordpress.org/plugins/settings/custom-settings-page/
  */
 
-function mw_ecommerce_tools_page_html () {
-	?>
-	<div class="wrap">
-		<h1><?php esc_html_e( get_admin_page_title() ); ?></h1>
-	</div>
-	<?php
+if ( ! function_exists( 'mw_ecommerce_tools_page_html' )) {
+    function mw_ecommerce_tools_page_html () {
+        ?>
+        <div class="wrap">
+            <h1><?php esc_html_e( get_admin_page_title() ); ?></h1>
+        </div>
+        <?php
+    }
 }
 function mwcb_options_page_html () {
    // check user capabilities
@@ -34,7 +36,6 @@ function mwcb_options_page_html () {
       </form>
     </div>
     <?php
-
     $setting = get_option('mwcb_settings');
 }
 
