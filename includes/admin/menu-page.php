@@ -36,7 +36,6 @@ function mwcb_options_page_html () {
     <?php
 
     $setting = get_option('mwcb_settings');
-    print_r($setting);
 }
 
 function mwcb_options_page() {
@@ -71,6 +70,7 @@ function mwcd_settings_init() {
 	register_setting( 'mwcd', 'mwcb_settings');
 	add_settings_section( 'mwcb_settings_section', __('Display Settings', 'mw-countdown-banner'), 'mwcb_settings_section_cb', 'mwcd' );
 
+    add_settings_field( 'mwcb_display_banner', __('Enabled', 'mw-countdown-banner'), 'mwcb_display_banner_cb', 'mwcd', 'mwcb_settings_section' );
 	add_settings_field( 'mwcb_img_field', __('Image url', 'mw-countdown-banner'), 'mwcb_img_field_cb', 'mwcd', 'mwcb_settings_section' );
 	add_settings_field( 'mwcb_textarea_field', __('Text', 'mw-countdown-banner'), 'mwcb_textarea_field_cb', 'mwcd', 'mwcb_settings_section' );
 	add_settings_field( 'mwcb_textcolor_field', __('Text color', 'mw-countdown-banner'), 'mwcb_textcolor_field_cb', 'mwcd', 'mwcb_settings_section' );
@@ -87,6 +87,18 @@ function mwcb_settings_section_cb () {
 	esc_html_e( 'In this secction you can change the styles, messages and display configuration of the banner' , 'mw-countdown-banner' );
 }
 
+function mwcb_display_banner_cb () {
+    // get the value of the setting we've registered with register_setting()
+    $setting = get_option('mwcb_settings');
+    // output the field
+    ?>
+    <label for="mwcb-d-enabled">
+       <input id="mwcb-d-posts" type="checkbox" name="mwcb_settings[enabled]" value="true" 
+       <?php echo ( $setting[enabled] == 'true') ? 'checked'  : ''; ?>>
+   </label>
+    <?php
+           
+}
 function mwcb_img_field_cb () {
 	// get the value of the setting we've registered with register_setting()
     $setting = get_option('mwcb_settings');
@@ -165,19 +177,23 @@ function mwcb_exclude_field_cb () {
     ?>	
     	<label for="mwcb-d-checkout">
 			<?php esc_html_e( 'Checkout page', 'mw-countdown-banner' ) ?>
-			<input id="mwcb-d-checkout" type="checkbox">
+			<input id="mwcb-d-checkout" type="checkbox" name="mwcb_settings[dcheckout]" value="true" 
+            <?php echo ( $setting[dcheckout] == 'true') ? 'checked'  : ''; ?>>
 		</label>
 		<label for="mwcb-d-cart">
 			<?php esc_html_e( 'Cart page', 'mw-countdown-banner' ) ?>
-			<input id="mwcb-d-cart" type="checkbox">
+			<input id="mwcb-d-cart" type="checkbox" name="mwcb_settings[dcart]" value="true" 
+            <?php echo ( $setting[dcart] == 'true') ? 'checked'  : ''; ?>>
 		</label>
 		<label for="mwcb-d-pages">
 			<?php esc_html_e( 'Pages', 'mw-countdown-banner' ) ?>
-			<input id="mwcb-d-pages" type="checkbox">
+			<input id="mwcb-d-pages" type="checkbox" name="mwcb_settings[dpages]" value="true" 
+            <?php  echo ( $setting[dpages] == 'true') ? 'checked'  : ''; ?>>
 		</label>
 		<label for="mwcb-d-posts">
 			<?php esc_html_e( 'Posts', 'mw-countdown-banner' ) ?>
-			<input id="mwcb-d-posts" type="checkbox">
+			<input id="mwcb-d-posts" type="checkbox" name="mwcb_settings[dposts]" value="true" 
+            <?php echo ( $setting[dposts] == 'true') ? 'checked'  : ''; ?>>
 		</label>
     <?php
 }

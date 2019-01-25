@@ -62,7 +62,7 @@ jQuery(document).ready(function($) {
     }
 	
 	function mwcb_banner_update (now , until ) {
-			let dif, days, mod, hours, minutes, seconds;
+		let dif, days, mod, hours, minutes, seconds;
 		setInterval( function mwcb_update () {
 			
 			dif = until - now;
@@ -76,28 +76,20 @@ jQuery(document).ready(function($) {
 			hours = Math.floor(hours);
 
 			minutes = mod * 60;
-			//mod = minutes % 1;
+			mod = minutes % 1;
 			minutes = Math.floor(minutes);
 
 			seconds = mod * 60;
-			//mod = seconds % 1;
+			mod = seconds % 1;
 			seconds = Math.floor(seconds);
-
-			console.log(mod);
 
 	    	$('.mwcb-days-number').html(days);
 	    	$('.mwcb-hours-number').html(hours);
 	    	$('.mwcb-minutes-number').html(minutes);
 	    	$('.mwcb-seconds-number').html(seconds);
 
-	   		now += 1;
+	   		now += 1000;
+
 	    },1000);
 	}
-
-    $('.et_pb_button').click(function(event){
-    	event.preventDefault();
- 		console.log('eliminar cookie');
-    	Cookies.remove('mwcb');
-    })
-
 });
