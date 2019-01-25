@@ -16,10 +16,17 @@
 		display: flex;
 	    flex-direction: column;
 	    justify-content: center;
+
+	    @media screen and (max-width: 800px) {
+	      width: 100%;
+	    }
 	}
 
 	.mwcb-col-2 {
 		width: 50%;
+		@media screen and (max-width: 800px) {
+		  width: 100%;
+		}
 
 		.mwcb-text {
 			text-align: center;
