@@ -47,7 +47,7 @@ function mwcb_enqueue_public_scripts( $hook ) {
         return;
     }
 
- 	wp_enqueue_script( 'mwcb_js', plugins_url( '/assets/dist/mwcb.js', __FILE__ ), array( 'jquery' ), '1.0.1', true );
+ 	wp_enqueue_script( 'mwcb_js', plugins_url( '/assets/dist/mwcb.js', __FILE__ ), array( 'jquery' ), '1.0.2', true );
  	
  	$data[days] = __('days','mw-countdown-banner');
  	$data[hours] = __('hours','mw-countdown-banner');
